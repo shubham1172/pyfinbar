@@ -1,0 +1,25 @@
+# Setup
+
+## Create a Google Sheets file 
+Format:
+
+||A|B|C|
+|-|-|-|-|
+|1|MSFT|=GOOGLEFINANCE(A1)|=ifna(index(GOOGLEFINANCE(A1, "price", today()-1, 1),2,2),B1)|
+|2|NIFTY|=GOOGLEFINANCE(A2)|=ifna(index(GOOGLEFINANCE(A2, "price", today()-1, 1),2,2),B2)|
+
+## Create a config file
+
+Copy the sheet ID. (Hint: "https://docs.google.com/spreadsheets/d/\<sheet-id\>/edit#gid=0")
+
+Create a `config.json` in the project root.
+```json
+{
+    "SpreadsheetId": "sheet-id"
+}
+```
+
+## Enable the Google sheets API
+GOTO https://developers.google.com/sheets/api/quickstart/python
+
+Create a project with OAuth for Desktop enabled project and download `credentials.json` in the project root.
