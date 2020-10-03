@@ -23,3 +23,22 @@ Create a `config.json` in the project root.
 GOTO https://developers.google.com/sheets/api/quickstart/python
 
 Create a project with OAuth for Desktop enabled project and download `credentials.json` in the project root.
+
+## Setup dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+# Usage
+
+## CLI
+
+```bash
+# Authorize the application
+python3 -m pygfbar.cli auth
+
+# Fetch data from sheets
+python3 -m pygfbar.cli fetch
+>> SENSEX 38697.05 38697.05 0.00% NIFTY 11416.95 11416.95 0.00%
+```
