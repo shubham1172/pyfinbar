@@ -30,6 +30,20 @@ Create a project with OAuth for Desktop enabled project and download `credential
 pip install -r requirements.txt
 ```
 
+## Install Tkinter
+
+### Arch
+
+```
+pacman -S tk
+```
+
+### Debian
+
+```
+apt install python3-tk
+```
+
 # Usage
 
 ## CLI

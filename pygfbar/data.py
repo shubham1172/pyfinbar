@@ -16,7 +16,7 @@ class StockRecord:
 
     def to_string(self, colored=False):
         delta = self.change()
-        s = "%s %.2f %.2f " % (self.ticker, self.prevclose, self.close)
+        s = "%s %.2f " % (self.ticker, self.close)
         suff = "%.2f%%" % delta
 
         if not colored:
