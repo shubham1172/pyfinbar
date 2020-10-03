@@ -17,7 +17,7 @@ class StockRecord:
     def to_string(self, colored=False):
         delta = self.change()
         s = "%s %.2f " % (self.ticker, self.close)
-        suff = "%.2f%%" % delta
+        suff = "%+.2f%%" % delta
 
         if not colored:
             return s + suff
@@ -34,10 +34,22 @@ class StockRecord:
         return \
         {
             "TICKER": self.ticker,
-            "PREVCLOSE": "%.2f" % self.prevclose,
             "CLOSE": "%.2f" % self.close,
-            "CHANGE": "%.2f%%" % self.change()
+            "CHANGE": "%+.2f%%" % self.change()
         }
+
+    def to_html(self):
+        delta = self.change()
+
+        if delta > 0:
+            color = "green"
+        elif delta < 0:
+            color = "red"
+        else:
+            color = "gray"
+
+        return "<span> <b>%s</b> %.2f <span style=\"color: %s;\"> %+.2f%% </span> </span>" \
+            % (self.ticker, self.close, color, delta)
 
     def __str__(self):
         return self.to_string()

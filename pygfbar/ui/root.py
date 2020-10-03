@@ -15,7 +15,7 @@ def get_root(ypos, refresh_rate):
 
     # add app
     app = App(root, refresh_rate)
-    app.pack(fill="both", expand="True")
+    app.pack(fill="both")
     return root
 
 def set_root_dims(root, ypos):
