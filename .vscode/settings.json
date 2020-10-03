@@ -7,5 +7,6 @@
         "**/.DS_Store": true,
         "**/__pycache__": true,
         "**/venv": true
-    }
+    },
+    "python.pythonPath": "venv/bin/python3"
 }

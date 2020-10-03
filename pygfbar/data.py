@@ -14,16 +14,33 @@ class StockRecord:
     def change(self):
         return 100*(self.close - self.prevclose)/self.close
 
-    def __str__(self):
+    def to_string(self, colored=False):
         delta = self.change()
+        s = "%s %.2f %.2f " % (self.ticker, self.prevclose, self.close)
+        suff = "%.2f%%" % delta
+
+        if not colored:
+            return s + suff
+
         if delta > 0:
             color = Colors.GREEN
         elif delta < 0:
             color = Colors.RED
         else:
             color = Colors.GRAY
-        return "%s %.2f %.2f " % (self.ticker, self.prevclose, self.close) \
-            + color + "%.2f%%" % delta + Colors.ENDC
+        return s + color + suff + Colors.ENDC
+
+    def to_object(self):
+        return \
+        {
+            "TICKER": self.ticker,
+            "PREVCLOSE": "%.2f" % self.prevclose,
+            "CLOSE": "%.2f" % self.close,
+            "CHANGE": "%.2f%%" % self.change()
+        }
+
+    def __str__(self):
+        return self.to_string()
 
 
 class SheetReader:
