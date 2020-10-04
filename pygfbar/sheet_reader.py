@@ -19,6 +19,8 @@ class SheetReader:
         values = result.get('values', [])
 
         for row in values:
-            xs.append(StockRecord(row[0], float(row[2]), float(row[1])))
+            # prevents stray data
+            if len(row) == 3:
+                xs.append(StockRecord(row[0], float(row[2]), float(row[1])))
 
         return xs

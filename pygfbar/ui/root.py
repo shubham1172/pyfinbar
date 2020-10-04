@@ -4,6 +4,7 @@ from pygfbar.ui.stock_display_app import StockDisplayApp
 
 def get_root(ypos, refresh_rate):
     root = tk.Tk()
+    root.configure(bg="black")
 
     # hide the title bar
     root.overrideredirect(True)
@@ -19,7 +20,7 @@ def get_root(ypos, refresh_rate):
 
     # add app
     app = StockDisplayApp(root, refresh_rate)
-    app.grid(row=0, column=0, sticky="nsew")
+    app.grid(row=0, column=0)
 
     return root
 

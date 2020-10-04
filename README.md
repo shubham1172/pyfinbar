@@ -15,9 +15,12 @@ Copy the sheet ID. (Hint: "https://docs.google.com/spreadsheets/d/(sheet-id)/edi
 Create a `config.json` in the project root.
 ```json
 {
-    "SpreadsheetId": "sheet-id"
+    "SpreadsheetId": "sheet-id",
+    "MaxVisibleStocks": 8
 }
 ```
+
+_MaxVisibleStocks_ is number of stocks visible in the bar.
 
 ## Enable the Google sheets API
 GOTO https://developers.google.com/sheets/api/quickstart/python

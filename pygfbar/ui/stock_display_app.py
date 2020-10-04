@@ -1,4 +1,7 @@
 import tkinter as tk
+import threading
+import time
+from pygfbar.config import Config
 from pygfbar.sheet_reader import SheetReader
 from pygfbar.ui.stock_record_frame import StockRecordFrame
 from pygfbar.stock_record import StockRecord
@@ -20,23 +23,17 @@ class StockDisplayApp(tk.Frame):
 
         self.parent.bind("<Button-1>", self.stop)
 
-        self.populate([
-            StockRecord("MSFT", 90, 100),
-            StockRecord("NIFTY", 1000, 1002),
-            StockRecord("SENSEX", 1000, 900)])
-
-        #     bg_thread = threading.Thread(target=self.fetch, daemon=True)
-        #     bg_thread.start()
+        bg_thread = threading.Thread(target=self.fetch, daemon=True)
+        bg_thread.start()
 
     def populate(self, records):
-        for i, record in enumerate(records):
-            frame = StockRecordFrame(record, 0, i)
+        for i, record in enumerate(records[:Config().maxVisibleStocks()]):
+            frame = StockRecordFrame(self.parent, record, 0, i)
 
-    # def fetch(self):
-    #     while self._is_running:
-    #         self.set_text((" "*4).join([x.to_html()
-    #                                     for x in self.reader.get_data()]))
-    #         time.sleep(self.refresh_rate)
+    def fetch(self):
+        while self._is_running:
+            self.populate(self.reader.get_data())
+            time.sleep(self.refresh_rate)
 
     def stop(self, event):
         self._is_running = False
