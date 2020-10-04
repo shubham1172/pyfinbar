@@ -5,5 +5,9 @@ token.pickle
 venv/
 __pycache__/
 
+<<<<<<< HEAD
+=======
+pygfbar.spec
+>>>>>>> 19df2e0... Add GitHub workflow
 build/
 dist/
