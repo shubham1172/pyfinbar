@@ -24,7 +24,7 @@ class StockDisplayApp(tk.Frame):
         self.parent.bind("<Button-1>", self.stop)
 
         self.epoch = 0
-        self.parent.after(self.refresh_rate*1000, self.fetch)
+        self.fetch()
 
     def populate(self, records):
         for i, record in enumerate(records[:Config().maxVisibleStocks()]):
