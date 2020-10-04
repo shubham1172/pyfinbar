@@ -10,7 +10,7 @@ Format:
 
 ## Create a config file
 
-Copy the sheet ID. (Hint: "https://docs.google.com/spreadsheets/d/\<sheet-id\>/edit#gid=0")
+Copy the sheet ID. (Hint: "https://docs.google.com/spreadsheets/d/(sheet-id)/edit#gid=0")
 
 Create a `config.json` in the project root.
 ```json
