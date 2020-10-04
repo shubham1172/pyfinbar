@@ -1,6 +1,4 @@
 import tkinter as tk
-import threading
-import time
 from pygfbar.config import Config
 from pygfbar.sheet_reader import SheetReader
 from pygfbar.ui.stock_record_frame import StockRecordFrame
@@ -25,25 +23,21 @@ class StockDisplayApp(tk.Frame):
 
         self.parent.bind("<Button-1>", self.stop)
 
-        bg_thread = threading.Thread(target=self.fetch, daemon=True)
-        bg_thread.start()
+        self.epoch = 0
+        self.fetch()
 
     def populate(self, records):
         for i, record in enumerate(records[:Config().maxVisibleStocks()]):
             frame = StockRecordFrame(self.parent, record, 0, i)
 
     def fetch(self):
-        epoch = 0
-        while self._is_running:
-            source_data = self.reader.get_data()
-            if (len(source_data) <= Config().maxVisibleStocks()):
-                # don't do anything if we can fit all the stocks
-                self.populate(source_data)
-            else:
-                # left rotate based on the epoch
-                self.populate(left_rotate_array(source_data, epoch))
-                epoch = (epoch + 1) % len(source_data)
-            time.sleep(self.refresh_rate)
+        source_data = self.reader.get_data()
+        if (len(source_data) <= Config().maxVisibleStocks()):
+            self.populate(source_data)
+        else:
+            self.populate(left_rotate_array(source_data, self.epoch))
+            self.epoch = (self.epoch + 1) % len(source_data)
+        self.parent.after(self.refresh_rate*1000, self.fetch)
 
     def stop(self, event):
         self._is_running = False
