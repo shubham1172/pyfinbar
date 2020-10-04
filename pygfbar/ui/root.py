@@ -1,5 +1,5 @@
 import tkinter as tk
-from pygfbar.ui.application import App
+from pygfbar.ui.stock_display_app import StockDisplayApp
 
 def get_root(ypos, refresh_rate):
     root = tk.Tk()
@@ -13,9 +13,13 @@ def get_root(ypos, refresh_rate):
     # set geometry
     set_root_dims(root, ypos)
 
+    # setup grid
+    root.grid_rowconfigure(0, weight=1)
+
     # add app
-    app = App(root, refresh_rate)
-    app.pack(fill="both")
+    app = StockDisplayApp(root, refresh_rate)
+    app.grid(row=0, column=0, sticky="nsew")
+
     return root
 
 def set_root_dims(root, ypos):

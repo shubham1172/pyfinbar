@@ -55,4 +55,7 @@ python3 -m pygfbar.cli auth
 # Fetch data from sheets
 python3 -m pygfbar.cli fetch
 >> SENSEX 38697.05 38697.05 0.00% NIFTY 11416.95 11416.95 0.00%
+
+# Start the dock; left click to close
+python3 -m pygfbar.cli dock --position 12
 ```
