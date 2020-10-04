@@ -1,6 +1,4 @@
 import tkinter as tk
-import threading
-import time
 from pygfbar.config import Config
 from pygfbar.sheet_reader import SheetReader
 from pygfbar.ui.stock_record_frame import StockRecordFrame
