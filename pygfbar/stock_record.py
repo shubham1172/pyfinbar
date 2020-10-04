@@ -19,7 +19,7 @@ class StockRecord:
         self.close = close
 
     def change(self):
-        return 100*(self.close - self.prevclose)/self.close
+        return 100*(self.close - self.prevclose)/self.prevclose
 
     def to_string(self, colored=False):
         delta = self.change()

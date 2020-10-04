@@ -5,8 +5,8 @@ Format:
 
 ||A|B|C|
 |-|-|-|-|
-|1|MSFT|=GOOGLEFINANCE(A1)|=ifna(index(GOOGLEFINANCE(A1, "price", today()-1, 1),2,2),B1)|
-|2|NIFTY|=GOOGLEFINANCE(A2)|=ifna(index(GOOGLEFINANCE(A2, "price", today()-1, 1),2,2),B2)|
+|1|MSFT|=GOOGLEFINANCE(A1)|=GOOGLEFINANCE(A1, "CloseYest")|
+|2|NIFTY|=GOOGLEFINANCE(A2)|=GOOGLEFINANCE(A1, "CloseYest")|
 
 ## Create a config file
 
