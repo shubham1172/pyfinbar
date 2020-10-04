@@ -37,10 +37,12 @@ class StockDisplayApp(tk.Frame):
         while self._is_running:
             source_data = self.reader.get_data()
             if (len(source_data) <= Config().maxVisibleStocks()):
+                # don't do anything if we can fit all the stocks
                 self.populate(source_data)
             else:
+                # left rotate based on the epoch
                 self.populate(left_rotate_array(source_data, epoch))
-                epoch += 1
+                epoch = (epoch + 1) % len(source_data)
             time.sleep(self.refresh_rate)
 
     def stop(self, event):
