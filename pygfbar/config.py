@@ -1,7 +1,7 @@
 import json
 from pygfbar.common import SingletonMeta
 
-DEFAULT_MAX_VISIBLE_STOCKS = 8
+DEFAULT_MAX_VISIBLE_STOCKS = 4
 
 class Config(metaclass=SingletonMeta):
     def __init__(self):

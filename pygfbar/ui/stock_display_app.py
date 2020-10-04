@@ -31,9 +31,11 @@ class StockDisplayApp(tk.Frame):
             frame = StockRecordFrame(self.parent, record, 0, i)
 
     def fetch(self):
+        source_data = self.reader.get_data()
         while self._is_running:
-            self.populate(self.reader.get_data())
+            self.populate(source_data)
             time.sleep(self.refresh_rate)
+            source_data.append(source_data.pop(0))
 
     def stop(self, event):
         self._is_running = False
