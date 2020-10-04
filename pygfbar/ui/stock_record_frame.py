@@ -9,14 +9,15 @@ class _StockRecordFrameLabel(tk.Label):
 
 class StockRecordFrame(tk.Frame):
     '''StockRecordFrame displays a stock record
-    
+
     usage:
-    
+
     record = StockRecord("SENSEX", 100, 120)
     frame = StockRecordFrame(record, row, column)
 
     It is made up of labels including one label for padding
     '''
+
     def __init__(self, record: StockRecord, r, c, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
 
