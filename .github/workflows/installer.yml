@@ -22,17 +22,11 @@ jobs:
         pip install -r requirements.txt
     - name: Run PyInstaller
       run:
-        pyinstaller \
-        --onedir \
-        --name pygfbar \
-        --add-data data/config.json:.\
-        --add-data data/credentials.json:. \
+        pyinstaller --onedir --name pygfbar --add-data data/config.json:. --add-data data/credentials.json:. pygfbar/cli.py
       # See https://stackoverflow.com/a/61531259/4654175
     - name: Copy google-api-python-client
       run:
-        cp -r \
-        $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/google_api_python_client-*/ \
-        ./dist/pygfbar
+        cp -r $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/google_api_python_client-*/ ./dist/pygfbar
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
