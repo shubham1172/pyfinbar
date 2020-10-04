@@ -1,6 +1,7 @@
 import tkinter as tk
 from pygfbar.ui.stock_display_app import StockDisplayApp
 
+
 def get_root(ypos, refresh_rate):
     root = tk.Tk()
 
@@ -21,6 +22,7 @@ def get_root(ypos, refresh_rate):
     app.grid(row=0, column=0, sticky="nsew")
 
     return root
+
 
 def set_root_dims(root, ypos):
     w = root.winfo_screenwidth()
