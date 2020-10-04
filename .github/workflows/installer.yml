@@ -25,8 +25,8 @@ jobs:
         pyinstaller \
         --onedir \
         --name pygfbar \
-        --add-data config.json:.\
-        --add-data credentials.json:. \
+        --add-data data/config.json:.\
+        --add-data data/credentials.json:. \
       # See https://stackoverflow.com/a/61531259/4654175
     - name: Copy google-api-python-client
       run:
