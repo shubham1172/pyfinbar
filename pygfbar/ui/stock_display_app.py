@@ -6,6 +6,8 @@ from pygfbar.sheet_reader import SheetReader
 from pygfbar.ui.stock_record_frame import StockRecordFrame
 from pygfbar.stock_record import StockRecord
 
+def left_rotate_array(arr, step):
+    return [arr[(i + step) % len(arr)] for i,_ in enumerate(arr)]
 
 class StockDisplayApp(tk.Frame):
     '''StockDisplayApp packs StockRecordFrame(s) linearly.
@@ -31,11 +33,15 @@ class StockDisplayApp(tk.Frame):
             frame = StockRecordFrame(self.parent, record, 0, i)
 
     def fetch(self):
-        source_data = self.reader.get_data()
+        epoch = 0
         while self._is_running:
-            self.populate(source_data)
+            source_data = self.reader.get_data()
+            if (len(source_data) <= Config().maxVisibleStocks()):
+                self.populate(source_data)
+            else:
+                self.populate(left_rotate_array(source_data, epoch))
+                epoch += 1
             time.sleep(self.refresh_rate)
-            source_data.append(source_data.pop(0))
 
     def stop(self, event):
         self._is_running = False
