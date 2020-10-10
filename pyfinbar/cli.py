@@ -23,8 +23,9 @@ def fetch(format):
 @cli.command(help="Start dock")
 @click.option("--position", default=0, help="placement of dock (y-axis) in percentage")
 @click.option("--refresh-rate", default=5, help="data refresh rate in seconds")
-def dock(position, refresh_rate):
-    root = get_root(position, refresh_rate)
+@click.option("--max-visible-stocks", default=8, help="maximum number of stocks to display at once")
+def dock(position, refresh_rate, max_visible_stocks):
+    root = get_root(position, refresh_rate, max_visible_stocks)
     root.mainloop()
 
 
