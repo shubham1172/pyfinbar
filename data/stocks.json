@@ -1,0 +1,24 @@
+[
+    {
+        "Ticker": "NIFTY",
+        "Symbol": "NSX",
+        "Type": "INDEX"
+    },
+    {
+        "Ticker": "SENSEX",
+        "Symbol": "SEN",
+        "Type": "INDEX"
+    },
+    {
+        "Ticker": "YESBANK",
+        "Symbol": "YB"
+    },
+    {
+        "Ticker": "MANAPPURAM",
+        "Symbol": "MGF01"
+    },
+    {
+        "Ticker": "NAM-INDIA",
+        "Symbol": "RNL"
+    }
+]

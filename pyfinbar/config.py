@@ -2,21 +2,17 @@ import json
 from typing import List
 from pyfinbar.common import SingletonMeta
 
-DEFAULT_MAX_VISIBLE_STOCKS = 4
-
 
 class Config(metaclass=SingletonMeta):
-    def __init__(self):
-        with open('config.json') as f:
-            self.config = json.load(f)
+    FILENAME = "stocks.json"
 
-    def maxVisibleStocks(self) -> int:
-        value = self.config.get("MaxVisibleStocks", None)
-        return value if value else DEFAULT_MAX_VISIBLE_STOCKS
+    def __init__(self):
+        with open(Config.FILENAME) as f:
+            self.stocks = json.load(f)
 
     def getStocks(self) -> List[List]:
         stocks = []
-        value = self.config.get("Stocks", [])
+        value = self.stocks
         for v in value:
             try:
                 ticker = v["Ticker"]
@@ -26,5 +22,5 @@ class Config(metaclass=SingletonMeta):
 
             except KeyError as ke:
                 raise AttributeError(
-                    "Invalid config.json. " + str(ke))
+                    f"Invalid {Config.FILENAME}. Missing {str(ke)}.")
         return stocks
