@@ -42,7 +42,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run PyInstaller
-        run: pyinstaller --onedir --name pyfinbar --add-data "data/stocks.json";. pyfinbar/cli.py
+        run: pyinstaller --onedir --name pyfinbar --add-data "data/stocks.json";"stocks.json" pyfinbar/cli.py
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
