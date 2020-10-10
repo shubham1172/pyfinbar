@@ -1,9 +1,11 @@
 config.json
 credentials.json
+!data/*
 token.pickle
 
 venv/
 __pycache__/
 
+pygfbar.spec
 build/
 dist/
