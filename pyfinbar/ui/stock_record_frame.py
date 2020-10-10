@@ -1,5 +1,5 @@
 import tkinter as tk
-from pygfbar.stock_record import StockRecord
+from pyfinbar.stock_record import StockRecord
 
 
 class _StockRecordFrameLabel(tk.Label):

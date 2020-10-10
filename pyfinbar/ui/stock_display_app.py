@@ -1,10 +1,10 @@
 import tkinter as tk
 import threading
 import time
-from pygfbar.config import Config
-from pygfbar.sheet_reader import SheetReader
-from pygfbar.ui.stock_record_frame import StockRecordFrame
-from pygfbar.stock_record import StockRecord
+from pyfinbar.config import Config
+from pyfinbar.client import MoneyControlStock
+from pyfinbar.ui.stock_record_frame import StockRecordFrame
+from pyfinbar.stock_record import StockRecord
 
 def left_rotate_array(arr, step):
     return [arr[(i + step) % len(arr)] for i,_ in enumerate(arr)]
@@ -21,7 +21,6 @@ class StockDisplayApp(tk.Frame):
         self.parent = parent
         self.refresh_rate = refresh_rate
         self._is_running = True
-        self.reader = SheetReader()
 
         self.parent.bind("<Button-1>", self.stop)
 
@@ -35,7 +34,7 @@ class StockDisplayApp(tk.Frame):
     def fetch(self):
         epoch = 0
         while self._is_running:
-            source_data = self.reader.get_data()
+            source_data = MoneyControlStock.fetch_values()
             if (len(source_data) <= Config().maxVisibleStocks()):
                 # don't do anything if we can fit all the stocks
                 self.populate(source_data)

@@ -1,4 +1,4 @@
-from pygfbar.console import Colors
+from pyfinbar.console import Colors
 
 
 class StockRecord:
