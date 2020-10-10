@@ -1,5 +1,5 @@
 import tkinter as tk
-from pygfbar.ui.stock_display_app import StockDisplayApp
+from pyfinbar.ui.stock_display_app import StockDisplayApp
 
 
 def get_root(ypos, refresh_rate):
