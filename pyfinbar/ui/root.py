@@ -1,8 +1,8 @@
 import tkinter as tk
-from pygfbar.ui.stock_display_app import StockDisplayApp
+from pyfinbar.ui.stock_display_app import StockDisplayApp
 
 
-def get_root(ypos, refresh_rate):
+def get_root(ypos, refresh_rate, max_visible_stocks):
     root = tk.Tk()
     root.configure(bg="black")
 
@@ -19,7 +19,7 @@ def get_root(ypos, refresh_rate):
     root.grid_rowconfigure(0, weight=1)
 
     # add app
-    app = StockDisplayApp(root, refresh_rate)
+    app = StockDisplayApp(root, refresh_rate, max_visible_stocks)
     app.grid(row=0, column=0)
 
     return root

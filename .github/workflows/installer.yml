@@ -2,34 +2,49 @@ name: Installer
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build-linux:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        python 
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run PyInstaller
-      run:
-        pyinstaller --onedir --name pygfbar --add-data data/config.json:. --add-data data/credentials.json:. pygfbar/cli.py
-      # See https://stackoverflow.com/a/61531259/4654175
-    - name: Copy google-api-python-client
-      run:
-        cp -r $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/google_api_python_client-*/ ./dist/pygfbar
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: pygfbar-linux
-        path: ./dist
-        
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run PyInstaller
+        run: pyinstaller --onedir --name pyfinbar --add-data data/stocks.json:. pyfinbar/cli.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pyfinbar-linux
+          path: ./dist
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python 
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run PyInstaller
+        run: pyinstaller --onedir --name pyfinbar --add-data data/stocks.json:. pyfinbar/cli.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pyfinbar-windows
+          path: ./dist

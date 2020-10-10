@@ -1,64 +1,68 @@
-# Setup
+# Pyfinbar
 
-## Create a Google Sheets file 
-Format:
+## Installation
 
-||A|B|C|
-|-|-|-|-|
-|1|MSFT|=GOOGLEFINANCE(A1)|=GOOGLEFINANCE(A1, "CloseYest")|
-|2|NIFTY|=GOOGLEFINANCE(A2)|=GOOGLEFINANCE(A1, "CloseYest")|
+- Go to https://github.com/shubham1172/pyfinbar/actions and select the latest workflow which ran successfully (one with a green tick next to it)
+- Go to build-linux or build-windows depending on your Operating System
+- Download artifact and extract it to a directory
+- Edit the `stocks.json` file with appropriate values (see [Create a stocks file](./README.md#create-a-stocks-file)).
+- Run pyfinbar
 
-## Create a config file
+## Usage
 
-Copy the sheet ID. (Hint: "https://docs.google.com/spreadsheets/d/(sheet-id)/edit#gid=0")
 
-Create a `config.json` in the project root.
-```json
-{
-    "SpreadsheetId": "sheet-id",
-    "MaxVisibleStocks": 8
-}
+```bash
+# Fetch data from sheets
+python3 -m pyfinbar.cli fetch
+>> SENSEX 38697.05 38697.05 0.00% NIFTY 11416.95 11416.95 0.00%
+
+# Start the dock; left click to close
+python3 -m pyfinbar.cli dock --position 12 --refresh-rate 10
 ```
 
-_MaxVisibleStocks_ is number of stocks visible in the bar.
+## Running from source
 
-## Enable the Google sheets API
-GOTO https://developers.google.com/sheets/api/quickstart/python
+### Create a stocks file
 
-Create a project with OAuth for Desktop enabled project and download `credentials.json` in the project root.
+Create a `stocks.json` in the project root.
+```json
+[
+    {
+        "Ticker": "NIFTY",
+        "Symbol": "NSX",
+        "Type": "INDEX"
+    },
+    {
+        "Ticker": "YESBANK",
+        "Symbol": "YB"
+    }
+]
+```
 
-## Setup dependencies
+For each stock,
+- "Ticker" is the display name for PyFinBar
+- "Symbol" is the moneycontrol symbol*
+- "Type" can be "INDEX", "BSE", or "NSE" (default)
+
+
+***Note**, goto moneycontrol.com and open the "network" tab under developer console. Lookout for API calls to https://priceapi.moneycontrol.com/ and get the symbol from there.
+
+### Setup dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Install Tkinter
+### Install Tkinter
 
-### Arch
+#### Arch
 
 ```
 pacman -S tk
 ```
 
-### Debian
+#### Debian
 
 ```
 apt install python3-tk
-```
-
-# Usage
-
-## CLI
-
-```bash
-# Authorize the application
-python3 -m pygfbar.cli auth
-
-# Fetch data from sheets
-python3 -m pygfbar.cli fetch
->> SENSEX 38697.05 38697.05 0.00% NIFTY 11416.95 11416.95 0.00%
-
-# Start the dock; left click to close
-python3 -m pygfbar.cli dock --position 12
 ```
