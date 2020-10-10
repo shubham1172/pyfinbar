@@ -8,6 +8,10 @@
 - Edit the `stocks.json` file with appropriate values (see [Create a stocks file](./README.md#create-a-stocks-file)).
 - Run pyfinbar
 
+```bash
+pyfinbar --help
+```
+
 ## Usage
 
 
