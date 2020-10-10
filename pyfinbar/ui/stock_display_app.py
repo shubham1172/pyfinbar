@@ -1,8 +1,9 @@
 import tkinter as tk
-from pygfbar.config import Config
-from pygfbar.sheet_reader import SheetReader
-from pygfbar.ui.stock_record_frame import StockRecordFrame
-from pygfbar.stock_record import StockRecord
+from pyfinbar.config import Config
+from pyfinbar.client import MoneyControlStock
+from pyfinbar.ui.stock_record_frame import StockRecordFrame
+from pyfinbar.stock_record import StockRecord
+
 
 def left_rotate_array(arr, step):
     return [arr[(i + step) % len(arr)] for i, _ in enumerate(arr)]
